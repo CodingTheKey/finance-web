@@ -64,13 +64,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
               {showPassword ? (
                 <Icons.eye
-                  color="#ffff"
+                  color="#0f172a"
                   onClick={togglePasswordVisibility}
                   className="mr-2 h-4 w-4 absolute top-3 right-1 cursor-pointer"
                 />
               ) : (
                 <Icons.eye_closed
-                  color="#ffff"
+                  color="#0f172a"
                   onClick={togglePasswordVisibility}
                   className="mr-2 h-4 w-4 absolute top-3 right-1 cursor-pointer"
                 />
@@ -93,13 +93,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
               {showConfirmPassword ? (
                 <Icons.eye
-                  color="#ffff"
+                  color="#0f172a"
                   onClick={toggleConfirmPasswordVisibility}
                   className="mr-2 h-4 w-4 absolute top-3 right-1 cursor-pointer"
                 />
               ) : (
                 <Icons.eye_closed
-                  color="#ffff"
+                  color="#0f172a"
                   onClick={toggleConfirmPasswordVisibility}
                   className="mr-2 h-4 w-4 absolute top-3 right-1 cursor-pointer"
                 />
@@ -108,7 +108,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           </div>
           <Button className="mt-2" disabled={isLoading}>
             {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              <Icons.spinner className="mr-2 h-4 w-4 animate-spin " />
             )}
             Criar conta
           </Button>
@@ -128,7 +128,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         {isLoading ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
-          <Icons.google className="mr-2 h-4 w-4" />
+          <Icons.google className="mr-2 h-4 w-4" color="bg-red-700" />
         )}
         Google
       </Button>

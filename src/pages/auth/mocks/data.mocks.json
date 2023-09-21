@@ -1,0 +1,129 @@
+[
+  {
+    "symbol": "GOLL4",
+    "shortName": "GOL PN N2",
+    "longName": "Gol Linhas Aéreas Inteligentes S.A.",
+    "marketPrice": 6.79,
+    "regularMarketChangePercent": 6.093748,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/gol-linhas-aereas-inteligentes--big.svg"
+  },
+  {
+    "symbol": "PETR4",
+    "shortName": "PETROBRAS PN N2",
+    "longName": "Petróleo Brasileiro S.A. - Petrobras",
+    "marketPrice": 34.29,
+    "regularMarketChangePercent": 0.23385513,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/brasileiro-petrobras--big.svg"
+  },
+  {
+    "symbol": "BPAC3",
+    "shortName": "BTGP BANCO ON N2",
+    "longName": "Banco BTG Pactual S.A.",
+    "marketPrice": 14.53,
+    "regularMarketChangePercent": -0.9543309,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/btgp--big.svg"
+  },
+  {
+    "symbol": "BBSE3",
+    "shortName": "BBSEGURIDADEON NM",
+    "longName": "BB Seguridade Participações S.A.",
+    "marketPrice": 32.20,
+    "regularMarketChangePercent": 1.6414156,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/bb-seguridade--big.svg"
+  },
+  {
+    "symbol": "SANB3",
+    "shortName": "SANTANDER BRON",
+    "longName": "Banco Santander (Brasil) S.A.",
+    "marketPrice": 12.64,
+    "regularMarketChangePercent": 1.69,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/santander--big.svg"
+  },
+  {
+    "symbol": "CXSE3",
+    "shortName": "CAIXA SEGURION NM",
+    "longName": "Caixa Seguridade Participações S.A.",
+    "marketPrice": 11.48,
+    "regularMarketChangePercent": 0.70,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/caixa-segurion--big.svg"
+  },
+  {
+    "symbol": "CPLE3",
+    "shortName": "CAIXA SEGURION NM",
+    "longName": "Companhia Paranaense de Energia - COPEL",
+    "marketPrice": 8.48,
+    "regularMarketChangePercent": 0.36,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/cia-paranaense--big.svg"
+  },
+  {
+    "symbol": "CIEL3",
+    "shortName": "CAIXA SEGURION NM",
+    "longName": "Cielo S.A.",
+    "marketPrice": 3.42,
+    "regularMarketChangePercent": -1.42543309,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/cielo--big.svg"
+  },
+  {
+    "symbol": "GOLL4",
+    "shortName": "GOL PN N2",
+    "longName": "Gol Linhas Aéreas Inteligentes S.A.",
+    "marketPrice": 6.79,
+    "regularMarketChangePercent": 6.093748,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/gol-linhas-aereas-inteligentes--big.svg"
+  },
+  {
+    "symbol": "PETR4",
+    "shortName": "PETROBRAS PN N2",
+    "longName": "Petróleo Brasileiro S.A. - Petrobras",
+    "marketPrice": 34.29,
+    "regularMarketChangePercent": 0.23385513,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/brasileiro-petrobras--big.svg"
+  },
+  {
+    "symbol": "BPAC3",
+    "shortName": "BTGP BANCO ON N2",
+    "longName": "Banco BTG Pactual S.A.",
+    "marketPrice": 14.53,
+    "regularMarketChangePercent": -2.42543309,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/btgp--big.svg"
+  },
+  {
+    "symbol": "BBSE3",
+    "shortName": "BBSEGURIDADEON NM",
+    "longName": "BB Seguridade Participações S.A.",
+    "marketPrice": 32.20,
+    "regularMarketChangePercent": 1.6414156,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/bb-seguridade--big.svg"
+  },
+  {
+    "symbol": "SANB3",
+    "shortName": "SANTANDER BRON",
+    "longName": "Banco Santander (Brasil) S.A.",
+    "marketPrice": 12.64,
+    "regularMarketChangePercent": 1.69,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/santander--big.svg"
+  },
+  {
+    "symbol": "CXSE3",
+    "shortName": "CAIXA SEGURION NM",
+    "longName": "Caixa Seguridade Participações S.A.",
+    "marketPrice": 11.48,
+    "regularMarketChangePercent": 0.70,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/caixa-segurion--big.svg"
+  },
+  {
+    "symbol": "CPLE3",
+    "shortName": "CAIXA SEGURION NM",
+    "longName": "Companhia Paranaense de Energia - COPEL",
+    "marketPrice": 8.48,
+    "regularMarketChangePercent": 0.36,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/cia-paranaense--big.svg"
+  },
+  {
+    "symbol": "CIEL3",
+    "shortName": "CAIXA SEGURION NM",
+    "longName": "Cielo S.A.",
+    "marketPrice": 3.42,
+    "regularMarketChangePercent": -0.2343309,
+    "logo_url": "https://s3-symbol-logo.tradingview.com/cielo--big.svg"
+  }]

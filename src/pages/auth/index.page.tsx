@@ -1,9 +1,16 @@
 import { Metadata } from 'next'
-import Link from 'next/link'
+import { cn } from '@/lib/utils'
+import { useKeenSlider } from 'keen-slider/react'
+import data from './mocks/data.mocks.json'
 
 import { buttonVariants } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
 import { UserAuthForm } from './components/user-auth.form'
+import Logo from '../../assets/Logo.svg'
+import Image from 'next/image'
+import { Card } from '@/components/Card'
+import 'keen-slider/keen-slider.min.css'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 export const metadata: Metadata = {
   title: 'Authentication',
@@ -11,6 +18,29 @@ export const metadata: Metadata = {
 }
 
 export default function AuthenticationPage() {
+  const animation = { duration: 15000, easing: (t: number) => t }
+
+  const [sliderRef] = useKeenSlider({
+    loop: true,
+    renderMode: 'performance',
+    drag: true,
+    created(s) {
+      s.moveToIdx(5, true, animation)
+    },
+    updated(s) {
+      s.moveToIdx(s.track.details.abs + 5, true, animation)
+    },
+    animationEnded(s) {
+      s.moveToIdx(s.track.details.abs + 5, true, animation)
+    },
+    slides: {
+      perView: 3,
+      spacing: 12,
+    },
+  })
+
+  const reversedData = [...data].reverse()
+
   return (
     <>
       <div className="flex h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -24,30 +54,66 @@ export default function AuthenticationPage() {
           Login
         </Link>
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
-          <div className="absolute inset-0 bg-zinc-900" />
+          <div className="absolute inset-0 bg-white-900" />
           <div className="relative z-20 flex items-center text-lg font-medium">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="mr-2 h-6 w-6"
+            <Image src={Logo} width={170} height={50} alt="" />
+          </div>
+
+          <h1 className="text-2xl font-medium mt-44 text-center text-muted-foreground z-50">
+            Potencialize Seus Investimentos com Análise Inteligente e Comparação
+            de Ações: Bem-vindo à {''}
+            <strong className="text-blue-600">Revolução Financeira</strong>!
+          </h1>
+
+          <div
+            className="flex cursor-pointer mt-16 keen-slider"
+            ref={sliderRef}
+          >
+            {data.map((item) => {
+              return (
+                <Card
+                  isSlider
+                  key={item.symbol}
+                  symbol={item.symbol}
+                  shortName={item.longName}
+                  marketPrice={item.marketPrice}
+                  regularMarketChangePercent={item.regularMarketChangePercent}
+                  logoUrl={item.logo_url}
+                />
+              )
+            })}
+          </div>
+
+          <div
+            className="flex mt-10 cursor-pointer keen-slider"
+            ref={sliderRef}
+          >
+            {reversedData.map((item) => {
+              return (
+                <Card
+                  isSlider
+                  key={item.symbol}
+                  symbol={item.symbol}
+                  shortName={item.longName}
+                  marketPrice={item.marketPrice}
+                  regularMarketChangePercent={item.regularMarketChangePercent}
+                  logoUrl={item.logo_url}
+                />
+              )
+            })}
+          </div>
+
+          <span className="text-sm text-muted-foreground mt-auto cursor-pointer z-50">
+            Site desenvolvido pela
+            <Link
+              href="https://github.com/CodingTheKey"
+              target="_blank"
+              className="font-medium text-orange-600 dark:text-orange-500 hover:underline"
             >
-              <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
-            </svg>
-            Finance.io
-          </div>
-          <div className="relative z-20 mt-auto">
-            <blockquote className="space-y-2">
-              <p className="text-lg">
-                &ldquo;Vamos pensar em algo legal ainda&rdquo;
-              </p>
-              <footer className="text-sm">Nikolas Santana</footer>
-            </blockquote>
-          </div>
+              {' '}
+              CodeTheKey
+            </Link>
+          </span>
         </div>
         <div className="lg:p-8">
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
