@@ -1,25 +1,20 @@
-import { Metadata } from 'next'
 import { cn } from '@/lib/utils'
 import { useKeenSlider } from 'keen-slider/react'
-import data from './mocks/data.mocks.json'
+import data from './../mocks/data.mocks.json'
 
 import { buttonVariants } from '@/components/ui/button'
-import { UserAuthForm } from './components/user-auth.form'
+import { UserAuthForm } from './components/user-register.form'
 import Logo from '../../assets/Logo.svg'
 import Image from 'next/image'
 import { Card } from '@/components/Card'
 import 'keen-slider/keen-slider.min.css'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
-export const metadata: Metadata = {
-  title: 'Authentication',
-  description: 'Authentication forms built using the components.',
-}
-
-export default function AuthenticationPage() {
+export default function Register() {
   const animation = { duration: 15000, easing: (t: number) => t }
-
   const [sliderRef] = useKeenSlider({
     loop: true,
     renderMode: 'performance',
@@ -41,11 +36,20 @@ export default function AuthenticationPage() {
 
   const reversedData = [...data].reverse()
 
+  const session = useSession()
+  const router = useRouter()
+
+  // useEffect(() => {
+  //   if (session.status === 'unauthenticated') {
+  //     router.push('/')
+  //   }
+  // }, [router, session.status])
+
   return (
     <>
       <div className="flex h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <Link
-          href="/examples/authentication"
+          href="/login"
           className={cn(
             buttonVariants({ variant: 'ghost' }),
             'absolute right-4 top-4 md:right-8 md:top-8',

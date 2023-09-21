@@ -1,4 +1,5 @@
 import { Poppins } from 'next/font/google'
+import { SessionProvider } from 'next-auth/react'
 import type { AppProps } from 'next/app'
 import { ToastContainer } from 'react-toastify'
 
@@ -12,24 +13,26 @@ const poppins = Poppins({
 
 export default function App({
   Component,
-  pageProps: { ...pageProps },
+  pageProps: { session, ...pageProps },
 }: AppProps) {
   return (
-    <main className={poppins.className}>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+    <SessionProvider session={session}>
+      <main className={poppins.className}>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
 
-      <Component {...pageProps} />
-    </main>
+        <Component {...pageProps} />
+      </main>
+    </SessionProvider>
   )
 }

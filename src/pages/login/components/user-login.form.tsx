@@ -2,36 +2,68 @@ import { Icons } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { cn } from '@/lib/utils'
-import { SyntheticEvent, useState } from 'react'
+import { signIn } from 'next-auth/react'
+import { useState } from 'react'
+import { api } from '@/lib/axios'
+import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
+import { AxiosError } from 'axios'
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
+const registerFormSchema = z.object({
+  email: z.string().email({ message: 'E-mail inválido' }),
+  password: z
+    .string()
+    .min(4, { message: 'O senha precisa ter pelo menos 4 caracteres' }),
+})
+
+type LoginFormData = z.infer<typeof registerFormSchema>
+
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(registerFormSchema),
+  })
+
+  const router = useRouter()
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
   }
 
-  const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword)
-  }
+  async function handleLogin(data: LoginFormData) {
+    try {
+      // await api.post('/user', {
+      //   email: data.email,
+      //   password: data.password,
+      // })
 
-  async function onSubmit(event: SyntheticEvent) {
-    event.preventDefault()
-    setIsLoading(true)
+      console.log(data)
 
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 3000)
+      // await router.push('/')
+    } catch (err) {
+      if (err instanceof AxiosError && err?.response?.data?.message) {
+        toast.error(err?.response?.data?.message)
+        return
+      }
+
+      console.error(err)
+    }
   }
 
   return (
     <div className={cn('grid gap-6', className)} {...props}>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit(handleLogin)}>
         <div className="grid gap-2">
           <div className="grid gap-1">
             <Label className="py-2" htmlFor="email">
@@ -39,13 +71,20 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             </Label>
             <Input
               id="email"
-              placeholder="seu-email@email.com"
+              placeholder="joãozinho@email.com"
               type="email"
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              disabled={isLoading}
+              disabled={isSubmitting}
+              {...register('email')}
             />
+
+            {errors.email && (
+              <p className="text-sm mt-1 text-red-500">
+                {errors.email?.message}
+              </p>
+            )}
           </div>
 
           <div className="grid gap-1">
@@ -59,8 +98,15 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 type={showPassword ? 'text' : 'password'}
                 autoCapitalize="none"
                 autoCorrect="off"
-                disabled={isLoading}
+                disabled={isSubmitting}
+                {...register('password')}
               />
+
+              {errors.password && (
+                <p className="text-sm mt-1 text-red-500">
+                  {errors.password?.message}
+                </p>
+              )}
 
               {showPassword ? (
                 <Icons.eye
@@ -77,40 +123,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               )}
             </div>
           </div>
-          <div className="grid gap-1">
-            <Label className="py-2" htmlFor="confirm-password">
-              Confirmar senha
-            </Label>
-            <div className="relative">
-              <Input
-                id="confirm-password"
-                placeholder="confirme a sua senha"
-                type={showConfirmPassword ? 'text' : 'password'}
-                autoCapitalize="none"
-                autoCorrect="off"
-                disabled={isLoading}
-              />
-
-              {showConfirmPassword ? (
-                <Icons.eye
-                  color="#0f172a"
-                  onClick={toggleConfirmPasswordVisibility}
-                  className="mr-2 h-4 w-4 absolute top-3 right-1 cursor-pointer"
-                />
-              ) : (
-                <Icons.eye_closed
-                  color="#0f172a"
-                  onClick={toggleConfirmPasswordVisibility}
-                  className="mr-2 h-4 w-4 absolute top-3 right-1 cursor-pointer"
-                />
-              )}
-            </div>
-          </div>
-          <Button className="mt-2" disabled={isLoading}>
-            {isLoading && (
+          <Button type="submit" disabled={isSubmitting} className="mt-2">
+            {isSubmitting && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin " />
             )}
-            Criar conta
+            Entrar
           </Button>
         </div>
       </form>
@@ -124,12 +141,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           </span>
         </div>
       </div>
-      <Button variant="outline" type="button" disabled={isLoading}>
-        {isLoading ? (
-          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
-          <Icons.google className="mr-2 h-4 w-4" color="bg-red-700" />
-        )}
+      <Button
+        type="button"
+        disabled={isSubmitting}
+        onClick={() => signIn('google')}
+        className="text-white bg-red-600 hover:bg-red-600/90 focus:ring-4 focus:bg-red-600/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#dc2626]/55 mr-2 mb-2"
+      >
+        <Icons.google className="mr-2 h-4 w-4" color="bg-red-700" />
         Google
       </Button>
     </div>

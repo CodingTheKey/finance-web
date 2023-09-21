@@ -1,1 +1,1 @@
-export { default } from './auth/index.page'
+export { default } from './home/index.page'
